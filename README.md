@@ -192,4 +192,4 @@ Native/browser CPU figures are not an FM-1 timing measurement.
 
 ## Inspiration
 
-Fart Machine One was partly inspired by [Tooty Loop](https://cannice.itch.io/tooty-loop), a game-jam project I worked on with my friend Candace (cannice) for the GMTK Game Jam 2025. Candace led the idea and game development, and I contributed the sound work. Big thanks to her for the original spark—go give Tooty Loop a toot!
+Fart Machine One was partly inspired by [Tooty Loop](https://cannice.itch.io/tooty-loop), a game-jam project I worked on with my friend Candice (cannice) for the GMTK Game Jam 2025. Candice led the idea and game development, and I contributed the sound work. Big thanks to her for the original spark—go give Tooty Loop a toot!
