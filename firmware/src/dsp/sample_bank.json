@@ -1,0 +1,125 @@
+{
+  "placeholder": false,
+  "sample_rate": 22050,
+  "pcm_bytes": 278384,
+  "budget_bytes": 327680,
+  "mapping": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "samples": [
+    {
+      "name": "1",
+      "display_name": "TOOT",
+      "frames": 6891,
+      "source_file": "1.wav",
+      "sha256": "04caac54a1e225eca730cadf93761a1db979279b981f462a08950fd17bde6980",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "2",
+      "display_name": "TRUMP",
+      "frames": 6891,
+      "source_file": "2.wav",
+      "sha256": "a0eb56f46972eba268b063f715483f4034f3c6c5fee3f50d7e06503af00fec47",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "3",
+      "display_name": "PFFT",
+      "frames": 6891,
+      "source_file": "3.wav",
+      "sha256": "75ed49600cc0226ea3206582f1ddadc2d0e61263d1b7ce9d6b26698b5ce63169",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "4",
+      "display_name": "RASPBERRY",
+      "frames": 8269,
+      "source_file": "4.wav",
+      "sha256": "79c341eb932204f81108cb5c911918e1e98e9449ae188aab44a165fc80007d80",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "5",
+      "display_name": "WIND",
+      "frames": 9647,
+      "source_file": "5.wav",
+      "sha256": "09e4934a218e48ec1b877adf51189ec21c7b7c9247f9dc379de0fa427c474009",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "6",
+      "display_name": "FLATULENCE",
+      "frames": 5512,
+      "source_file": "6.wav",
+      "sha256": "14affb1e7f117ef09326cc9b35331180f155e389a823af6a50c4227696579987",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "7",
+      "display_name": "BOTTOM BURP",
+      "frames": 6891,
+      "source_file": "7.wav",
+      "sha256": "82ac77efda65390ec8f63ca1b90ddadb44929616e3cdd4b917df4884c97003a3",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "9",
+      "display_name": "AIR BISCUIT",
+      "frames": 22050,
+      "source_file": "9.wav",
+      "sha256": "801ac6453850869fbbb688852bf8d03c98bb4559213398f6258b2114f20f1df0",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "10",
+      "display_name": "RIPPER",
+      "frames": 22050,
+      "source_file": "10.wav",
+      "sha256": "383869aff4da25eb8ef5bd5aabdae34e38d98340b16026b63caa39f16801f7b1",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "11",
+      "display_name": "SBD",
+      "frames": 22050,
+      "source_file": "11.wav",
+      "sha256": "c004095a4b7891cfe2a448077526073dbdfd09368722a901747588b18104c295",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    },
+    {
+      "name": "12",
+      "display_name": "LET RIP",
+      "frames": 22050,
+      "source_file": "12.wav",
+      "sha256": "49d1d6d9840abae5720363621863552a565187e2a959b2f7d76f7ca48c9591cd",
+      "license": "USER TO PROVIDE SOURCE/LICENCE"
+    }
+  ]
+}
