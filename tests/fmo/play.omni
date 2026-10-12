@@ -1,0 +1,62 @@
+wait 50
+expect triggers 0
+expect active 0
+shot ready.png
+wav dry.wav
+spin K1 -100
+key 0 down
+wait 20
+expect triggers 1
+wait 600
+expect triggers 1
+expect active 0
+key 0 up
+key 0 down
+wait 20
+expect triggers 2
+key 0 up
+wait 700
+wavstop
+spin K1 55
+spin K2 50
+wav effects.wav
+tapkey 3
+wait 180
+shot effects.png
+wait 3000
+wavstop
+spin K1 10000
+spin K2 -10000
+spin K3 10000
+spin K4 10000
+expect par0 100
+expect par1 0
+expect par2 500
+expect par3 70
+tap SEQ
+tap REC
+tap ARP
+wait 50
+expect triggers 3
+midi 90 35 7f
+wait 50
+expect triggers 4
+midi 90 35 00
+wait 10
+expect triggers 4
+midi 91 35 7f
+midi 90 20 7f
+wait 10
+expect triggers 4
+tap PLAY
+wait 20
+expect active 0
+expect store_writes 0
+expect dropped 0
+reboot
+wait 20
+expect par0 15
+expect par1 0
+expect par2 240
+expect par3 25
+expect active 0

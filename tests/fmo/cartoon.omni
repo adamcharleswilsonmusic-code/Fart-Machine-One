@@ -1,0 +1,85 @@
+wait 50
+expect triggers 0
+shot idle.png
+wav puff-demo.wav
+wait 40
+shot frame-00.png
+key 1 down
+wait 15
+key 1 up
+wait 25
+shot frame-01.png
+wait 40
+shot frame-02.png
+wait 40
+shot frame-03.png
+wait 40
+shot frame-04.png
+wait 40
+shot frame-05.png
+wait 40
+shot frame-06.png
+wait 40
+shot frame-07.png
+key 8 down
+wait 15
+key 8 up
+wait 25
+shot frame-08.png
+wait 40
+shot frame-09.png
+key 10 down
+wait 15
+key 10 up
+wait 25
+shot frame-10.png
+wait 40
+shot frame-11.png
+key 1 down
+wait 15
+key 1 up
+wait 25
+shot frame-12.png
+wait 40
+shot frame-13.png
+wait 40
+shot frame-14.png
+wait 40
+shot frame-15.png
+wait 40
+shot frame-16.png
+wait 40
+shot frame-17.png
+wait 40
+shot frame-18.png
+wait 40
+shot frame-19.png
+wait 40
+shot frame-20.png
+wait 40
+shot frame-21.png
+wait 40
+shot frame-22.png
+wait 40
+shot frame-23.png
+wait 40
+shot frame-24.png
+wait 40
+shot frame-25.png
+wait 40
+shot frame-26.png
+wait 40
+shot frame-27.png
+wait 40
+shot frame-28.png
+wait 40
+shot frame-29.png
+wait 40
+shot frame-30.png
+wait 40
+shot frame-31.png
+wavstop
+expect triggers 4
+expect puffs 4
+expect puff_mask 0
+expect dropped 0

@@ -1,0 +1,194 @@
+wait 50
+spin K1 -100
+wav all-eleven-dry.wav
+peakreset
+tapkey 0
+wait 1100
+expect triggers 1
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 1
+wait 1100
+expect triggers 2
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 2
+wait 1100
+expect triggers 3
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 3
+wait 1100
+expect triggers 4
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 4
+wait 1100
+expect triggers 5
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 5
+wait 1100
+expect triggers 6
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 6
+wait 1100
+expect triggers 7
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 7
+wait 1100
+expect triggers 8
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 8
+wait 1100
+expect triggers 9
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 9
+wait 1100
+expect triggers 10
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 10
+wait 1100
+expect triggers 11
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 11
+wait 1100
+expect triggers 12
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 12
+wait 1100
+expect triggers 13
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 13
+wait 1100
+expect triggers 14
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 14
+wait 1100
+expect triggers 15
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 15
+wait 1100
+expect triggers 16
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 16
+wait 1100
+expect triggers 17
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 17
+wait 1100
+expect triggers 18
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 18
+wait 1100
+expect triggers 19
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 19
+wait 1100
+expect triggers 20
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 20
+wait 1100
+expect triggers 21
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 21
+wait 1100
+expect triggers 22
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 22
+wait 1100
+expect triggers 23
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 23
+wait 1100
+expect triggers 24
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 24
+wait 1100
+expect triggers 25
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 25
+wait 1100
+expect triggers 26
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+peakreset
+tapkey 26
+wait 1100
+expect triggers 27
+expect peak_db_min -90
+expect peak_db_max -0.1
+expect active 0
+wavstop
+expect dropped 0

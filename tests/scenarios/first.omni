@@ -1,0 +1,47 @@
+# a first look and listen: a C chord strummed, Am with the pad held, the rhythm with auto bass
+wav first.wav
+wait 300
+shot home.png
+strum 0 15 30
+wait 100
+shot strum.png
+expect strnote0 48
+expect strnote15 108
+wait 1500
+key b4 down
+wait 50
+expect root 9
+expect type 1
+expect chord_level >50
+strum 15 0 25
+wait 600
+shot chord.png
+key b4 up
+wait 400
+expect chord_level <5
+tap PLAY
+expect playing 1
+key b1 down
+wait 3000
+tap SEQ
+wait 100
+shot rhythm.png
+key b1 up
+tap PLAY
+expect playing 0
+wait 500
+wavstop
+expect peak_db_max -0.1
+expect peak_db_min -24
+tap FX
+shot sound.png
+tap SEL
+key b6 down
+key b6 up
+spin K2 1
+wait 50
+shot pads.png
+expect padtype6 3
+tap GLO
+wait 50
+shot setup.png

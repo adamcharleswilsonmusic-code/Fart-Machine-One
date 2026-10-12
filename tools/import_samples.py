@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-only
+"""Make the compiled sample bank; source WAVs are never modified.
+PCM WAV, 16 bit, mono/stereo; output 22050 Hz mono. Sorted files map left-to-right,
+cycling when fewer than 27. Supply --map JSON with exactly 27 source basenames to override.
+--names JSON maps source basenames to display labels without renaming source WAVs.
+"""
+import argparse, array, hashlib, json, math, re, struct, sys, wave
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1]
+RATE=22050
+BUDGET=320*1024
+
+def read_wav(path):
+    with wave.open(str(path),'rb') as w:
+        if w.getsampwidth()!=2 or w.getnchannels() not in (1,2) or w.getcomptype()!='NONE':
+            raise ValueError(f'{path.name}: use uncompressed 16-bit mono or stereo WAV')
+        rate,ch=w.getframerate(),w.getnchannels()
+        if not 8000<=rate<=192000 or w.getnframes()>rate*30:
+            raise ValueError(f'{path.name}: expected 8–192 kHz and at most 30 seconds')
+        raw=array.array('h',w.readframes(w.getnframes()))
+        if sys.byteorder!='little':raw.byteswap()
+    if not raw:raise ValueError(f'{path.name}: empty audio')
+    x=[sum(raw[i:i+ch])/ch for i in range(0,len(raw),ch)]
+    # Windowed-sinc low-pass resampling: prevent downsampling aliasing.
+    if rate!=RATE:
+        out=[]; ratio=rate/RATE; cutoff=min(1.0,RATE/rate)*0.94; radius=24
+        for j in range(max(1,round(len(x)/ratio))):
+            pos=j*ratio; mid=int(pos); total=weight=0.0
+            for k in range(max(0,mid-radius+1),min(len(x),mid+radius+1)):
+                d=pos-k; t=d*cutoff
+                sinc=1.0 if abs(t)<1e-12 else math.sin(math.pi*t)/(math.pi*t)
+                win=0.5+0.5*math.cos(math.pi*d/radius)
+                c=cutoff*sinc*win;total+=x[k]*c;weight+=c
+            out.append(total/weight if weight else 0.0)
+        x=out
+    # Remove DC, cap peaks (never amplify), and fade both boundaries for click-free starts/ends.
+    dc=sum(x)/len(x);x=[v-dc for v in x];peak=max(abs(v) for v in x)
+    scale=min(1.0,28000/max(1.0,peak));fade=min(110,len(x)//2)
+    return [round(v*scale*(min(1.0,i/max(1,fade),(len(x)-1-i)/max(1,fade)))) for i,v in enumerate(x)]
+
+def placeholder():
+    # Four generated test chirps, NOT real fart recordings. No external sample rights required.
+    sounds=[]
+    for k in range(4):
+        n=5512+k*551;phase=0.0;data=[]
+        for i in range(n):
+            t=i/RATE;phase+=2*math.pi*(90+30*k+160*math.exp(-t*18))/RATE
+            env=min(1,i/110)*max(0,1-i/n)**2
+            data.append(round(14000*env*(math.sin(phase)+0.2*math.sin(phase*2.01))))
+        sounds.append((f'TEST {k+1:02}',data,None))
+    return sounds
+
+def main():
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('folder',type=Path,nargs='?');ap.add_argument('--placeholder',action='store_true')
+    ap.add_argument('--names',type=Path,help='JSON object: source WAV basename -> display label')
+    ap.add_argument('--map',type=Path);ap.add_argument('--output',type=Path,default=ROOT/'firmware/src/dsp/sample_bank.h')
+    a=ap.parse_args()
+    if bool(a.folder)==bool(a.placeholder):ap.error('give a WAV folder OR --placeholder')
+    if a.placeholder:sounds=placeholder()
+    else:
+        files=sorted((p for p in a.folder.iterdir() if p.suffix.lower()=='.wav'),key=lambda p:[int(t) if t.isdigit() else t.casefold() for t in re.split(r"(\d+)",p.name)])
+        if not 1<=len(files)<=27:ap.error('folder must contain 1–27 WAV files')
+        sounds=[(p.stem,read_wav(p),p) for p in files]
+    size=sum(len(x)*2 for _,x,_ in sounds)
+    if size>BUDGET:ap.error(f'bank is {size} bytes, budget {BUDGET}; shorten or use fewer sounds (about 7.4 seconds total)')
+    mapping=[i%len(sounds) for i in range(27)]
+    if a.map:
+        names=[p.name if p else n for n,_,p in sounds]; wanted=json.loads(a.map.read_text())
+        if not isinstance(wanted,list) or len(wanted)!=27:ap.error('mapping must be a JSON list of 27 WAV basenames')
+        mapping=[names.index(n) for n in wanted]
+    labels=[(f'FART {int(name):02d}' if name.isdigit() else name).encode('ascii','replace').decode()[:20] for name,_,_ in sounds]
+    if a.names:
+        if a.placeholder:ap.error('--names is for imported recordings, not the test fixture')
+        overrides=json.loads(a.names.read_text())
+        expected={p.name for _,_,p in sounds}
+        if not isinstance(overrides,dict) or set(overrides)!=expected:ap.error('--names must contain exactly the imported WAV basenames')
+        labels=[overrides[p.name] for _,_,p in sounds]
+        if any(not isinstance(label,str) or not 1<=len(label)<=20 or label!=label.strip() or any(ord(c)<32 or ord(c)>126 for c in label) for label in labels):ap.error('display labels must be 1–20 printable ASCII characters, without outer spaces')
+        if len(set(labels))!=len(labels):ap.error('each unique sample needs a distinct display label')
+    lines=['/* SPDX-License-Identifier: GPL-3.0-only */','/* Generated by tools/import_samples.py. See sample_bank.json for audio provenance. */','#pragma once','#include <stdint.h>',f'#define FMO_PLACEHOLDER {int(a.placeholder)}','typedef struct { const int16_t *data; uint32_t length; const char *name; } fmo_sample_t;']
+    for i,(_,data,_) in enumerate(sounds):
+        lines.append(f'static const int16_t sample_{i}[] = {{')
+        lines.extend(','.join(str(v) for v in data[j:j+24])+',' for j in range(0,len(data),24));lines.append('};')
+    lines.append('static const fmo_sample_t fmo_samples[] = {')
+    for i,(name,data,_) in enumerate(sounds):
+        label=labels[i]
+        lines.append('{sample_%d,%du,%s},'%(i,len(data),json.dumps(label)))
+    lines+=['};','static const uint8_t fmo_map[27] = {'+','.join(map(str,mapping))+'};']
+    a.output.parent.mkdir(parents=True,exist_ok=True)
+    a.output.write_text('\n'.join(lines)+'\n')
+    manifest={'placeholder':a.placeholder,'sample_rate':RATE,'pcm_bytes':size,'budget_bytes':BUDGET,'mapping':mapping,
+      'samples':[{'name':name,'display_name':labels[i],'frames':len(data),'source_file':p.name if p else None,'sha256':hashlib.sha256(p.read_bytes()).hexdigest() if p else None,'license':'generated test audio' if a.placeholder else 'USER TO PROVIDE SOURCE/LICENCE'} for i,(name,data,p) in enumerate(sounds)]}
+    a.output.with_suffix('.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    print(f'{len(sounds)} sounds, {size} PCM bytes, 27 keys; '+('PLACEHOLDERS' if a.placeholder else 'imported WAVs'))
+if __name__=='__main__':
+    try:main()
+    except (ValueError,wave.Error,OSError) as e:sys.exit(str(e))

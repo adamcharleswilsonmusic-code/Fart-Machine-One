@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-11",
+  "docker_desktop": "4.94.0 (241994)",
+  "docker_image": "debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587",
+  "jieli_directory": "jieli-linux-toolchains-20260730.1",
+  "jieli_clang_sha256": "c45189ee624de0430deb0db02e6dce171fb5538e7fe323e3964dc8ac6236240f",
+  "ac79_sdk_commit": "d179b4484759423312073f5fbb232501aa491047",
+  "foundation_commit": "405ef41aef75f7e70afd6decc01505df07c708e9",
+  "pillow": "11.3.0",
+  "emscripten": "4.0.23"
+}

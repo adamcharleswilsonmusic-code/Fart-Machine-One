@@ -1,0 +1,89 @@
+# chord buttons, the OM rows (ENV minor, LFO 7th, both m7), CHORD HOLD, SYNC START, saving
+wait 200
+# F (button 0), then ENV held: F minor; LFO: F7; both: Fm7
+tapkey b0
+expect root 5
+expect type 0
+press ENV
+tapkey b0
+release ENV
+expect type 1
+press LFO
+tapkey b0
+release LFO
+expect type 2
+press ENV
+press LFO
+tapkey b0
+release LFO
+release ENV
+expect type 4
+# a modifier used with a chord does not open its page
+expect view 0
+# the strings follow the chord: F7 is F A Eb, F3 A3 Eb3 on strings 0..2 (Eb folded up to F#2..F3)
+tapkey b0
+press LFO
+tapkey b0
+release LFO
+expect strnote0 53
+expect strnote1 45
+expect strnote2 51
+# without HOLD the chord stops when let go
+tapkey b1
+wait 400
+expect chord_level 0
+# CHORD HOLD: it keeps going; the same button again stops it
+tap ARP
+expect hold 1
+tapkey b2
+wait 400
+expect chord_level >50
+expect pad 2
+tapkey b2
+wait 400
+expect chord_level 0
+expect pad -1
+tap ARP
+expect hold 0
+# SYNC START: PLAY waits for a chord
+tap REC
+expect sync 1
+tap PLAY
+expect armed 1
+expect playing 0
+wait 100
+key b3 down
+wait 20
+expect playing 1
+expect armed 0
+key b3 up
+tap PLAY
+expect playing 0
+# OCT+ moves the plate up
+tap OCT+
+expect par13 1
+tap OCT-
+expect par13 0
+# transpose with PRESETS: +2
+turn PRESET 2
+expect par12 2
+# the CHORDS page: press a button, change its chord
+tap SEL
+expect view 3
+tapkey b10
+spin K1 -2
+spin K2 -2
+expect padroot10 7
+expect padtype10 0
+shot chords.png
+# it saves by itself when quiet, and comes back after a restart
+wait 5000
+expect dirty 0
+reboot
+wait 100
+expect padroot10 7
+expect par12 2
+expect sync 1
+shot after_reboot.png
+# Chord rev comes back at its default
+expect par11 25
