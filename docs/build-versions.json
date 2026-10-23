@@ -7,5 +7,7 @@
   "ac79_sdk_commit": "d179b4484759423312073f5fbb232501aa491047",
   "foundation_commit": "405ef41aef75f7e70afd6decc01505df07c708e9",
   "pillow": "11.3.0",
-  "emscripten": "4.0.23"
+  "emscripten": "4.0.23",
+  "cc0_update_date": "2026-10-22",
+  "package_identity": "FM-1_703"
 }

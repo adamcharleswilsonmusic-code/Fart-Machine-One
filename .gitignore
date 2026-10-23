@@ -1,0 +1,11 @@
+build/
+.DS_Store
+__pycache__/
+*.o
+
+.venv/
+tooling/
+release-dist/
+.env
+.env.*
+!.env.example

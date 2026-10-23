@@ -1,6 +1,6 @@
 # Fart Machine One licensing
 
-Fart Machine One is a derivative of FoMni, licensed GPL-3.0-only.
+Fart Machine One is a local derivative of FoMni, licensed GPL-3.0-only.
 The new playback engine, importer, UI, original firmware-native cartoon artwork and tests use the same licence. The original
 FoMni plate reverb is retained in `firmware/src/dsp/plate.h`. The cartoon and puff were created from scratch in this project; see `docs/ARTWORK-PROVENANCE.md`. Original platform,
 loader, USB, audio and hardware copyright notices remain in place.
@@ -8,7 +8,7 @@ Distribute complete corresponding source alongside any firmware distribution.
 
 The generated TEST 01–04 chirps are temporary original test audio and are dedicated
 to the public domain under CC0 1.0. They are not recordings of farts.
-The current firmware uses eleven user-supplied samples reported by Adam to come from Pixabay as royalty-free sounds. Their individual recording licences and redistribution permission have not been independently verified. See `samples/ATTRIBUTION.md`. The recordings are included as assets for this instrument, with their separate provenance notice.
+The current firmware uses ten recorded sound effects whose individual creator pages publish them under CC0 1.0. Full original downloads and selected PCM excerpts are included under samples/source-originals/ and samples/bank-inputs/. See samples/ATTRIBUTION.md, samples/AUDIO-LICENSE.txt and the per-recording source URLs, hashes and processing in samples/SOURCE-MANIFEST.json. Creator statements identify actual recordings; original compressed encodings remain identified. The CC0 audio dedication permits redistribution of the recordings and derived sample bank; the audio is not relicensed as GPL by its inclusion in firmware.
 The imported header's code licence does not override a recording's licence.
 
 The official AC79 SDK files packaged into the firmware are Apache-2.0; its licence

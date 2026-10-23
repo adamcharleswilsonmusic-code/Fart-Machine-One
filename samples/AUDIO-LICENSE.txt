@@ -1,0 +1,28 @@
+Fart Machine One — real recorded audio
+
+SPDX-License-Identifier: CC0-1.0
+
+The ten source recordings are individually published under Creative Commons
+CC0 1.0 Universal on their Freesound pages. Their CC0 notices were verified on
+2026-10-22. These source files and the prepared audio derivatives are distributed
+under CC0-1.0. Attribution and recording provenance are retained in ATTRIBUTION.md
+and SOURCE-MANIFEST.json, although CC0 does not require attribution.
+
+CC0 deed:
+https://creativecommons.org/publicdomain/zero/1.0/
+
+CC0 legal code:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+Creators: SamuelGremaud, Sadiquecat, and anndszjuvupftbim.
+
+Freesound IDs included:
+518699, 790551, 787755, 803563, 803574, 803576, 803695, 803696, 803697, 803578.
+
+The original downloaded files are preserved without modification in
+source-originals/. Each source and each derived bank input is SHA-256 identified
+in SOURCE-MANIFEST.json. Audio processing is documented there and can be repeated
+using reproduce_audio.py with the recorded FFmpeg version.
+
+This notice covers these ten audio recordings and their preparation only.
+Project source code, graphics, and other assets have their own license notices.

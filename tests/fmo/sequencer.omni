@@ -14,7 +14,7 @@ tapkey 6
 wait 410
 tapkey 7
 wait 410
-tapkey 10
+tapkey 9
 wait 410
 tap REC
 expect playing 1
@@ -22,7 +22,7 @@ expect recording 0
 expect mask0 3
 expect mask4 64
 expect mask8 128
-expect mask12 1024
+expect mask12 512
 wav sequencer-loop.wav
 wait 200
 shot seq-playing.png

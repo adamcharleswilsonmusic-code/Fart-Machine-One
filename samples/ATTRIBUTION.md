@@ -1,30 +1,28 @@
-# Audio provenance
+# Fart Machine One — recorded CC0 audio
 
-Eleven user-supplied recordings are included in `samples/originals/` as source
-assets for building Fart Machine One. They were imported on 2026-10-11.
-SHA-256 checksums and format/duration are in `SOURCE-MANIFEST.json`.
-Total source duration: 6.312585 seconds. All are mono PCM16, 44,100 Hz.
+These ten samples derive from creator-described real recordings published under CC0 on their individual Freesound pages. Attribution is retained for provenance. Original downloaded bytes are preserved in `source-originals/`. Selected WAVs listed below are under `bank-inputs/`.
 
-Adam identified Pixabay as the source on 2026-10-11 and described the sounds
-as royalty-free. Specific item URLs, contributor names and download certificates
-are unavailable. This is user-reported provenance, not an independently verified
-licence for each recording. Do not label these recordings public domain, CC0 or
-GPL solely on that basis.
+License: [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/). Verified on 2026-10-22.
 
-Pixabay's current general terms allow creative uses and restrict standalone
-redistribution. These files are included for reproducing the instrument, not offered as a
-separate stock sound library. The terms do not explicitly address this firmware
-sample-instrument use, and inclusion is not a claim of verified permission for
-each recording. The GPL code licence does not relicense the audio.
+| File | Freesound recording | Creator | Original preview | Selected seconds |
+|---|---|---|---|---|
+| 01.wav | [FART - 2](https://freesound.org/people/SamuelGremaud/sounds/518699/) | SamuelGremaud | 01 | 1.135 |
+| 02.wav | [Fart 2](https://freesound.org/people/Sadiquecat/sounds/790551/) | Sadiquecat | 03 | 0.620 |
+| 03.wav | [Short fart](https://freesound.org/people/Sadiquecat/sounds/787755/) | Sadiquecat | 04 | 0.270 |
+| 04.wav | [04 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803563/) | anndszjuvupftbim | 06 | 1.150 |
+| 05.wav | [16 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803574/) | anndszjuvupftbim | 07 | 0.332 |
+| 06.wav | [18 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803576/) | anndszjuvupftbim | 08 | 0.620 |
+| 07.wav | [24 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803695/) | anndszjuvupftbim | 09 | 0.437 |
+| 08.wav | [25 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803696/) | anndszjuvupftbim | 10 | 0.391 |
+| 09.wav | [26 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803697/) | anndszjuvupftbim | 11 | 0.279 |
+| 10.wav | [20 - fart](https://freesound.org/people/anndszjuvupftbim/sounds/803578/) | anndszjuvupftbim | New | 0.464 |
 
-References checked 2026-10-11:
-- https://pixabay.com/service/license-summary/
-- https://pixabay.com/service/terms/
+Previous preview 02 (874487) and 05 (135716) are excluded by user choice.
 
-Key order cycles through 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, then repeats.
-There is no 8.wav in the supplied set; eleven files are intentional.
-The importer makes mono 22,050 Hz PCM with DC removal and brief fades, without
-truncation. Original recording files are unmodified.
+Processing: decode to 44.1 kHz, average source channels, select a contiguous event excerpt, peak level to −6 dBFS (gain capped at +12 dB), apply 3 ms edge fades, encode mono PCM16. No pitch/speed changes, synthesis, denoising, or internal event splicing. Exact source-relative trim frames, gain, original format and hashes are in SOURCE-MANIFEST.json.
 
-The separate TEST fixture bank is generated locally for regression tests and
-is CC0 test audio. It is not included in the actual-sample firmware bank.
+Two retained sources contain separated events: 803563 uses the first event; 803576 uses the strongest middle event. The complete original downloads are retained.
+
+Quality assessment used source statements and technical waveform analysis. It is not a claim that the assistant heard and judged the recordings. MP3/M4A source quality and incidental recording noise remain.
+
+To reproduce all ten selected WAVs from these originals, run `python3 reproduce_audio.py --ffmpeg /path/to/ffmpeg` from this directory. Output is a separate `reproduced-bank-inputs/` folder and all hashes must match. This helper is GPL-3.0-only code; the recordings remain CC0.

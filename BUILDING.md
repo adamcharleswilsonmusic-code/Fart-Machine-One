@@ -29,14 +29,15 @@ results. The build checks the three packaged SDK file hashes against its referen
 ## Build and check
 
 ```sh
-python tools/import_samples.py samples/originals --names samples/display_names.json
+python tools/import_samples.py samples/bank-inputs --names samples/display_names.json --provenance samples/SOURCE-MANIFEST.json
 sh tests/run_tests.sh
 ./build.sh
+sh tests/run_tests.sh
 ```
 
 Output: `build/fart-machine-one.fwsc` (installable package), `build/omni.bin`
 (application), and `build/loader/ota.bin` (update loader). Builds and tests do not
-contact the FM-1. The default package identity is `FM-1_701`.
+contact the FM-1. The default package identity is `FM-1_703`.
 The build checks entry placement, RAM/app capacity and low-level code boundaries.
 The test suite covers sample import, playback, effects, panel/MIDI controls,
 sequencer timing, overdubbing, stop/clear, encoders, USB audio, TRS MIDI and storage.
@@ -56,3 +57,11 @@ python3 -m http.server 8791 --bind 127.0.0.1 --directory build/emu
 Open http://127.0.0.1:8791/ and switch on. The preview runs the app's C playback
 and screen code. It does not simulate USB flashing or the physical audio circuitry.
 Native/browser performance does not measure the physical FM-1's CPU load.
+
+## Recorded audio sources
+
+The ten CC0 source downloads are preserved unchanged in samples/source-originals/. The mono44.1k PCM16 event excerpts used for the bank are in samples/bank-inputs/; hashes, creator URLs, original formats and exact trim/processing details are in samples/SOURCE-MANIFEST.json. Generic imports without --provenance retain their unspecified-licence notice; supplied provenance must match every WAV filename and SHA256.
+
+Normal builds use the checked-in bank inputs and need no media decoder. To reproduce the selected excerpts from full originals, use samples/reproduce_audio.py with the FFmpeg version recorded in the manifest; output is a separate folder and every WAV must match its expected hash.
+
+The release source archive includes the actual custom sampler working tree and CC0 audio. Build outputs, Git/cache files, historical audio and external compiler/SDK checkouts are excluded. Existing code/font/SDK notices are retained.

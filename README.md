@@ -1,6 +1,6 @@
 # Fart Machine One
 
-Turns your M-VAVE FM-1 into a questionable musical instrument. Eleven artisanal
+Turns your M-VAVE FM-1 into a questionable musical instrument. Ten real recorded CC0
 farts, reverb, delay, and a 16-step sequencer. Finally, a productive use for wind
 instruments.
 
@@ -17,8 +17,8 @@ You do **not** need to build the firmware. You will need:
 
 This is replacement firmware for the FM-1. Installation replaces its current
 firmware. Keep the USB cable connected until installation and restart finish.
-The supplied package was installed on our FM-1 and its identity verified;
-other computer setups and starting firmware versions have not all been tested.
+This CC0 audio update is built and tested locally. Installation and hardware
+verification are separate from the host/browser checks recorded with the release.
 
 ### 1. Download the firmware and source
 
@@ -85,7 +85,7 @@ python tools/fm1_install.py fart-machine-one.fwsc
 
 Read the confirmation prompt, check that it is the intended device, and type
 `y` to continue. Wait for the update and restart to finish. Successful completion
-reports that the FM-1 runs **FM-1_701**. You can run the `--info` command again
+reports that the FM-1 runs **FM-1_703**. You can run the `--info` command again
 to check.
 
 ### 6. Make something regrettable
@@ -116,7 +116,7 @@ For developers, [BUILDING.md](BUILDING.md) explains building from source.
 
 | Control | Behavior |
 | --- | --- |
-| All 27 keys | Play a full one-shot sample immediately, whether stopped, playing or recording. Eleven sounds repeat across the keys. |
+| All 27 keys | Play a full one-shot sample immediately, whether stopped, playing or recording. Ten sounds repeat across the keys. |
 | PLAY | Start the loop from step 1, or stop playback and recording, silence all voices/effect tails and clear puffs. Stopping retains the loop. |
 | REC — tap and release | Start recording from step 1 if stopped. During playback, turn overdubbing on/off without restarting. Turning recording off leaves playback running. |
 | REC — hold 1 second | Clear the whole loop, stop and silence everything. Releasing after a clear does not start recording. Tempo/effects stay unchanged. |
@@ -148,20 +148,21 @@ without erasing the loop. MIDI clock sync is not implemented.
 
 ## Sounds and names
 
-In original numeric filename order (1–7 and 9–12): TOOT, TRUMP, PFFT, RASPBERRY,
-WIND, FLATULENCE, BOTTOM BURP, AIR BISCUIT, RIPPER, SBD, LET RIP. The same name
-appears wherever a sample repeats over 27 keys, with no numbered suffixes.
-
-The eleven recordings total 6.312585 seconds and are mono PCM16 at 44.1 kHz.
-Copies and checksums are under `samples/`. The compiled bank is 278,384 bytes of
-mono 22,050 Hz PCM. The sounds are reported to originate from Pixabay and have
-separate audio terms; the code licence does not cover them. See
-[samples/ATTRIBUTION.md](samples/ATTRIBUTION.md).
+The ten samples are TOOT, TRUMP, PFFT, RASPBERRY, WIND, FLATULENCE,
+BOTTOM BURP, AIR BISCUIT, RIPPER and SBD, cycling in that order across all 27 keys.
+They are actual recordings published by their creators under CC0 1.0. Full
+unchanged downloads are in `samples/source-originals/`; the selected mono PCM16
+excerpts used for the bank are in `samples/bank-inputs/`. Creator/source links,
+original and derived SHA256 hashes, and exact selection/processing details are
+recorded in `samples/SOURCE-MANIFEST.json` and `samples/ATTRIBUTION.md`.
+Compressed originals retain their original quality limits after PCM conversion.
+The code's GPL licence is separate from the recordings' CC0 dedication.
+The excerpts total 5.698163 seconds; their compiled bank is 251,292 bytes.
 
 To reproduce the bank without altering source WAVs:
 
 ```sh
-python3 tools/import_samples.py samples/originals --names samples/display_names.json
+python3 tools/import_samples.py samples/bank-inputs --names samples/display_names.json --provenance samples/SOURCE-MANIFEST.json
 ```
 
 Importer accepts 1–27 PCM16 mono/stereo WAVs at 8–192 kHz, converts to 22,050 Hz
@@ -169,7 +170,7 @@ mono, removes DC, limits excessive peaks and applies brief boundary fades.
 Compiled audio budget: 320 KiB, about 7.4 seconds of unique audio; no automatic
 truncation. `--map mapping.json` optionally specifies 27 source basenames;
 `--names names.json` supplies distinct readable display labels up to 20 ASCII
-characters. Names affect metadata only. Tests use a separate generated fixture.
+characters. Names affect metadata only. `--provenance` copies supplied credits/licences only when every WAV filename and SHA256 match; stale metadata fails without replacing the bank. Generic imports without provenance retain their unspecified-licence notice. Tests use a separate generated fixture, which is not shipped as the instrument bank.
 
 ## Build, test, preview and provenance
 
@@ -185,10 +186,9 @@ character sprites or existing character reference were used. Inherited code and
 the licensed Terminus font remain credited separately. See LICENSING.md and
 `docs/ARTWORK-PROVENANCE.md`.
 
-Package identity: **FM-1_701**. See [BUILDING.md](BUILDING.md) for the source build
+Package identity: **FM-1_703**. See [BUILDING.md](BUILDING.md) for the source build
 and [LICENSING.md](LICENSING.md) for code, audio and third-party notices.
 Native/browser CPU figures are not an FM-1 timing measurement.
-
 
 ## Inspiration
 

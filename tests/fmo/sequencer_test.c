@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 #include "omni.h"
 static int32_t out[512];
 static void run(unsigned frames) {
@@ -25,8 +26,10 @@ int main(void) {
     om_seq_toggle_record();run(1);run(88200);assert(om_triggers==2);
     om_init();om_seq_toggle_record();run(1);
     assert(om_seq_playing && om_seq_recording && om_seq_step==0);
-    om_trigger(0,127);om_trigger(1,100);om_trigger(11,32);run(1);
-    assert(om_seq_mask[0]==3 && om_triggers==3); /* key 11 repeats sample 0: one stored sound */
+    int repeat=1;while(repeat<27 && strcmp(om_sample_name(repeat),om_sample_name(0)))repeat++;
+    assert(repeat<27);
+    om_trigger(0,127);om_trigger(1,100);om_trigger(repeat,32);run(1);
+    assert(om_seq_mask[0]==3 && om_triggers==3); /* repeated keys store one sound */
     run(3306);om_trigger(2,127);run(1);assert(om_seq_mask[1]==4);
     until_step(1);assert(om_triggers==4); /* quantized-ahead live hit is not doubled */
     om_seq_toggle_record();run(1);assert(!om_seq_recording && om_seq_playing);

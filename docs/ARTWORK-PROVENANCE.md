@@ -33,6 +33,7 @@ is Terminus, by Dimitar Toshkov Zhekov, under SIL OFL 1.1; its licence is retain
 that font or the upstream firmware’s artwork. The browser’s generic FM-1 panel
 illustration is inherited from FoMni, distinct from the new on-device character.
 
-The eleven audio recordings were supplied separately by Adam. Their public-domain
-provenance has not been verified; see `samples/ATTRIBUTION.md`. This artwork audit
-does not assert ownership or licensing of those recordings.
+The current ten audio recordings are separate CC0 material credited in
+`samples/ATTRIBUTION.md`, with hashes and creator/source URLs in
+`samples/SOURCE-MANIFEST.json`. This artwork statement describes only the
+independently authored cartoon geometry, not authorship of those recordings.

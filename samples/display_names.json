@@ -1,13 +1,12 @@
 {
-  "1.wav": "TOOT",
-  "2.wav": "TRUMP",
-  "3.wav": "PFFT",
-  "4.wav": "RASPBERRY",
-  "5.wav": "WIND",
-  "6.wav": "FLATULENCE",
-  "7.wav": "BOTTOM BURP",
-  "9.wav": "AIR BISCUIT",
-  "10.wav": "RIPPER",
-  "11.wav": "SBD",
-  "12.wav": "LET RIP"
+  "01.wav": "TOOT",
+  "02.wav": "TRUMP",
+  "03.wav": "PFFT",
+  "04.wav": "RASPBERRY",
+  "05.wav": "WIND",
+  "06.wav": "FLATULENCE",
+  "07.wav": "BOTTOM BURP",
+  "08.wav": "AIR BISCUIT",
+  "09.wav": "RIPPER",
+  "10.wav": "SBD"
 }
