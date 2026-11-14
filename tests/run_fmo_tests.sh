@@ -16,7 +16,7 @@ $CC -O1 -g -fsanitize=address,undefined -ffp-contract=off -Wall -Wextra -Werror 
 build/fmo/sequencer_test
 $CC -O1 -g -fsanitize=address,undefined -ffp-contract=off -Wall -Wextra -Wno-unused-function -Wno-unused-parameter -DOM_HOST -Ibuild/gen -Ifirmware/src -Ifirmware/src/dsp tests/fmo/sequencer_ui_test.c firmware/src/dsp/omni.c -lm -o build/fmo/sequencer_ui_test
 build/fmo/sequencer_ui_test
-for name in encoder uac trs; do
+for name in encoder uac trs flash_id; do
   $CC -O2 -w -Ifirmware/src -Ifirmware/hal "tests/host/${name}_test.c" -lm -o "build/fmo/${name}_test"
   "build/fmo/${name}_test"
 done
