@@ -248,7 +248,11 @@ static void fm1_main(void)
     uint32_t last_frame = 0;
     {
         uint32_t f = irq_save();
-        flash_ok = FL_FAR(fl_jedec_ram)() == 0x856014u;   /* the expected 1 MiB part, else RAM only */
+        /* Puya 0x856014 or newer UC25HQ80 0xB36014 — else no OTA / store */
+        {
+            uint32_t jedec = FL_FAR(fl_jedec_ram)();
+            flash_ok = (jedec == 0x856014u || jedec == 0xB36014u);
+        }
         irq_restore(f);
         if (flash_ok)
             ota_boot_cleanup();

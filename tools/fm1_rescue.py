@@ -242,8 +242,8 @@ def rescue(dev, image, loader, write, backup_dir, say=print, confirm=None):
     dev.start_loader(loader)
     key, typ, fid = dev.chip()
     say(f"  chip key {key:04X}, flash type {typ}, id {fid:06X}")
-    if (key, typ, fid) != (0x980F, 3, 0x856014):
-        raise Fail("this is not the FM-1's chip and flash (expected key 980F, type 3, id 856014); nothing written")
+    if key != 0x980F or typ != 3 or fid not in (0x856014, 0xB36014):
+        raise Fail("this is not the FM-1's chip and flash (expected key 980F, type 3, id 856014 or B36014); nothing written")
     say("  reading the whole flash ...")
     t0 = time.time()
     now = dev.read(0, FLASH_SIZE)
